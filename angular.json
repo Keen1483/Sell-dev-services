@@ -36,12 +36,11 @@
             "styles": [
               "./node_modules/bootstrap/scss/bootstrap.scss",
               "src/styles.scss",
-              "./src/sass/fontawesome.scss",
-              "./src/assets/vendors/glightbox/css/glightbox.min.css"
+              "./src/assets/css/fontawesome.css",
+              "./node_modules/glightbox/dist/css/glightbox.min.css"
             ],
             "scripts": [
-              "./src/assets/vendors/glightbox/js/glightbox.min.js",
-              "./src/assets/vendors/glightbox/js/custom-glightbox.js",
+              "./node_modules/glightbox/dist/js/glightbox.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
