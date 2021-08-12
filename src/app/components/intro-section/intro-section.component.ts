@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import Glightbox from 'glightbox';
+// import GLightbox from 'glightbox';
+
+declare var GLightbox: any;
 
 @Component({
     selector: 'app-intro-section',
@@ -13,9 +15,13 @@ export class IntroSectionComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
-        // this.lightbox = Glightbox({
-
-        // });
+        this.lightbox = GLightbox({
+            'href': 'https://youtu.be/UzKX75aiBjM',
+            'type': 'video',
+            'source': 'youtube', //vimeo, youtube or local
+            'width': 900,
+            'autoPlayVideos': true,
+        });
     }
 
 }

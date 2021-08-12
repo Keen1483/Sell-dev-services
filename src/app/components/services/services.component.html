@@ -28,9 +28,9 @@
     <div class="container">
         <!-- START THE MOBILE DEVELOPMENT CONTENT -->
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services services_item">
                 <div class="services__content">
-                    <div class="icon fas fa-paper-plane d-block"></div>
+                    <div class="icon fas fa-code d-block"></div>
                     <h3 class="display-3--title mt-1">Mobile developement</h3>
                     <p class="lh-lg">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sit blanditiis molestias. Sequi recusandae, adipisci vel quis, pariatur, a debitis architecto illum ipsam inventore possimus optio odit beatae?
@@ -42,20 +42,42 @@
                     </button>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4 text-end">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services services__img services_item text-end">
                 <div class="services__pic">
-                    <img src="./assets/images/services/service-1.png" alt="maketing illustration" class="img-fluid">
+                    <img src="./assets/images/services/service_app-mobile.png" alt="maketing illustration" class="img-fluid">
                 </div>
+                <button type="button" class="rounded-pill btn-rounded border-primary btn--sm">Learn more
+                    <span>
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </button>
             </div>
         </div>
         <!-- START THE WEB DEVELOPMENT CONTENT -->
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4 text-start">
+
+            <!-- ONLY FOR SMALL DEVICE -->
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services d-md-none">
+                <div class="services__content pb-0 mb-0">
+                    <div class="icon fas fa-code d-block"></div>
+                    <h3 class="display-3--title mt-1">Web development</h3>
+                    <p class="lh-lg mb-0">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sit blanditiis molestias. Sequi recusandae, adipisci vel quis, pariatur, a debitis architecto illum ipsam inventore possimus optio odit beatae?
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services services__img services_item text-start">
                 <div class="services__pic">
                     <img src="./assets/images/services/service-2.png" alt="web development illustration" class="img-fluid">
                 </div>
+                <button type="button" class="rounded-pill btn-rounded border-primary btn--sm">Learn more
+                    <span>
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </button>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services services_item d-none d-md-block">
                 <div class="services__content">
                     <div class="icon fas fa-code d-block"></div>
                     <h3 class="display-3--title mt-1">Web development</h3>
@@ -67,12 +89,67 @@
                             <i class="fas fa-arrow-right"></i>
                         </span>
                     </button>
+                    <button type="button" class="rounded-pill btn-rounded border-primary btn--sm">Learn more
+                        <span>
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </button>
                 </div>
+            </div>
+        </div>
+        <!-- START THE UX/UI DESIGN -->
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services services_item">
+                <div class="services__content">
+                    <div class="icon fas fa-crop-alt d-block"></div>
+                    <h3 class="display-3--title mt-1">UX/UI DESIGN</h3>
+                    <p class="lh-lg">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sit blanditiis molestias. Sequi recusandae, adipisci vel quis, pariatur, a debitis architecto illum ipsam inventore possimus optio odit beatae?
+                    </p>
+                    <button type="button" class="rounded-pill btn-rounded border-primary">Learn more
+                        <span>
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services services__img services_item text-end">
+                <div class="services__pic">
+                    <img src="./assets/images/services/service_design.png" alt="maketing illustration" class="img-fluid">
+                </div>
+                <button type="button" class="rounded-pill btn-rounded border-primary btn--sm">Learn more
+                    <span>
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </button>
             </div>
         </div>
         <!-- START THE CLOUD HOSTING CONTENT -->
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
+
+            <!-- ONLY FOR SMALL DEVICE -->
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services d-md-none">
+                <div class="services__content pb-0 mb-0">
+                    <div class="icon fas fa-cloud-upload-alt d-block"></div>
+                    <h3 class="display-3--title mt-1">cloud hosting</h3>
+                    <p class="lh-lg mb-0">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sit blanditiis molestias. Sequi recusandae, adipisci vel quis, pariatur, a debitis architecto illum ipsam inventore possimus optio odit beatae?
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services services__img services_item text-start">
+                <div class="services__pic">
+                    <img src="./assets/images/services/service-3.png" alt="cloud hosting illustration" class="img-fluid">
+                </div>
+                
+                <button type="button" class="rounded-pill btn-rounded border-primary btn--sm">Learn more
+                    <span>
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services services_item d-none d-md-block">
                 <div class="services__content">
                     <div class="icon fas fa-cloud-upload-alt d-block"></div>
                     <h3 class="display-3--title mt-1">cloud hosting</h3>
@@ -84,13 +161,14 @@
                             <i class="fas fa-arrow-right"></i>
                         </span>
                     </button>
+                    <button type="button" class="rounded-pill btn-rounded border-primary btn--sm">Learn more
+                        <span>
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </button>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4 text-end">
-                <div class="services__pic">
-                    <img src="./assets/images/services/service-3.png" alt="cloud hosting illustration" class="img-fluid">
-                </div>
-            </div>
+            
         </div>
     </div>
 </section>

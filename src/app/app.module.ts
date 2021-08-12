@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeViewComponent } from './components/home-view/home-view.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { IntroSectionDetailsComponent } from './components/intro-section/intro-section-details/intro-section-details.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ContactComponent,
     FooterComponent,
     HomeViewComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    IntroSectionDetailsComponent
   ],
   imports: [
     BrowserModule,
