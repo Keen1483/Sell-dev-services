@@ -12,13 +12,13 @@
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <!-- CAROUSEL ITEM 1 -->
-                    <div class="carousel-item active">
+                    <div class="carousel-item" *ngFor="let testimonial of testimonials">
                         <!-- testmonials card -->
                         <div class="testimonials__card">
                             <div class="lh-lg">
                                 <p>
                                     <i class="fas fa-quote-left"></i>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores repellat vero adipisci est exercitationem eaque sed tenetur vel molestias, eveniet praesentium!
+                                    {{ testimonial.thought }}
                                     <i class="fas fa-quote-right"></i>
                                 </p>
                                 <div class="ratings">
@@ -34,107 +34,15 @@
                         </div>
                         <!-- client picture -->
                         <div class="testimonials__picture">
-                            <img src="./assets/images/testimonials/client-1.jpg" alt="client-1 picture" class="img-fluid rounded-circle">
+                            <img src="./assets/images/testimonials/{{ testimonial.photo }}" alt="client-1 picture" class="img-fluid rounded-circle">
                         </div>
                         <!-- client name & role -->
                         <div class="testimonials__name">
-                            <h3>Daisy Love</h3>
-                            <p class="fw-light">CEO &amp; Founder</p>
+                            <h3>{{ testimonial.name }}</h3>
+                            <p class="fw-light">{{ testimonial.profession }}</p>
                         </div>
                     </div>
-                    <!-- CAROUSEL ITEM 2 -->
-                    <div class="carousel-item">
-                        <!-- testmonials card -->
-                        <div class="testimonials__card">
-                            <div class="lh-lg">
-                                <p>
-                                    <i class="fas fa-quote-left"></i>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores repellat vero adipisci est exercitationem eaque sed tenetur vel molestias, eveniet praesentium!
-                                    <i class="fas fa-quote-right"></i>
-                                </p>
-                                <div class="ratings">
-                                    <p>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- client picture -->
-                        <div class="testimonials__picture">
-                            <img src="./assets/images/testimonials/client-2.jpg" alt="client-2 picture" class="img-fluid rounded-circle">
-                        </div>
-                        <!-- client name & role -->
-                        <div class="testimonials__name">
-                            <h3>Joy Marete</h3>
-                            <p class="fw-light">Finance Manager</p>
-                        </div>
-                    </div>
-                    <!-- CAROUSEL ITEM 3 -->
-                    <div class="carousel-item">
-                        <!-- testmonials card -->
-                        <div class="testimonials__card">
-                            <div class="lh-lg">
-                                <p>
-                                    <i class="fas fa-quote-left"></i>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores repellat vero adipisci est exercitationem eaque sed tenetur vel molestias, eveniet praesentium!
-                                    <i class="fas fa-quote-right"></i>
-                                </p>
-                                <div class="ratings">
-                                    <p>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- client picture -->
-                        <div class="testimonials__picture">
-                            <img src="./assets/images/testimonials/client-3.jpg" alt="client-3 picture" class="img-fluid rounded-circle">
-                        </div>
-                        <!-- client name & role -->
-                        <div class="testimonials__name">
-                            <h3>ClaireBelle Zawadi</h3>
-                            <p class="fw-light">Global Brand Manager</p>
-                        </div>
-                    </div>
-                    <!-- CAROUSEL ITEM 4 -->
-                    <div class="carousel-item">
-                        <!-- testmonials card -->
-                        <div class="testimonials__card">
-                            <div class="lh-lg">
-                                <p>
-                                    <i class="fas fa-quote-left"></i>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores repellat vero adipisci est exercitationem eaque sed tenetur vel molestias, eveniet praesentium!
-                                    <i class="fas fa-quote-right"></i>
-                                </p>
-                                <div class="ratings">
-                                    <p>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- client picture -->
-                        <div class="testimonials__picture">
-                            <img src="./assets/images/testimonials/client-4.jpg" alt="client-4 picture" class="img-fluid rounded-circle">
-                        </div>
-                        <!-- client name & role -->
-                        <div class="testimonials__name">
-                            <h3>Uhuru Kenyatta</h3>
-                            <p class="fw-light">CEO &amp; Founder</p>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="text-center">
                     <button class="btn btn-outline-light fas fa-long-arrow-alt-left" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
