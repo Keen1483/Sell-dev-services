@@ -16,6 +16,7 @@ import { HomeViewComponent } from './components/home-view/home-view.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { IntroSectionDetailsComponent } from './components/intro-section/intro-section-details/intro-section-details.component';
+import { LearnMoreComponent } from './components/services/learn-more/learn-more.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { IntroSectionDetailsComponent } from './components/intro-section/intro-s
     FooterComponent,
     HomeViewComponent,
     PageNotFoundComponent,
-    IntroSectionDetailsComponent
+    IntroSectionDetailsComponent,
+    LearnMoreComponent
   ],
   imports: [
     BrowserModule,
