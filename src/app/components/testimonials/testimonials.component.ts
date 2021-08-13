@@ -22,9 +22,6 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
         this.testimonialSubscription$ = this.testimonialService.testimonialSubject$.subscribe(
             (testimonials: Testimonial[]) => {
                 this.testimonials = testimonials;
-            },
-            (error) => {
-                console.log('An error occurred : ' + error);
             }
         );
         this.testimonialService.emitTestimonialSubject();
