@@ -37,7 +37,8 @@
               "./node_modules/bootstrap/scss/bootstrap.scss",
               "src/styles.scss",
               "./src/assets/css/fontawesome.css",
-              "./node_modules/glightbox/dist/css/glightbox.min.css"
+              "./node_modules/glightbox/dist/css/glightbox.min.css",
+              "./node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": [
               "./node_modules/glightbox/dist/js/glightbox.min.js",
