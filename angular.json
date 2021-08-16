@@ -38,12 +38,14 @@
               "src/styles.scss",
               "./src/assets/css/fontawesome.css",
               "./node_modules/glightbox/dist/css/glightbox.min.css",
-              "./node_modules/bootstrap-icons/font/bootstrap-icons.css"
+              "./node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "./node_modules/mapbox-gl/dist/mapbox-gl.css"
             ],
             "scripts": [
               "./node_modules/glightbox/dist/js/glightbox.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "./node_modules/jquery/dist/jquery.min.js"
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/mapbox-gl/dist/mapbox-gl.js"
             ]
           },
           "configurations": {

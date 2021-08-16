@@ -12,7 +12,7 @@
                     </svg>
                 </div>
                 <div class="contact-box__info">
-                    <a href="" class="contact-box__info--title">+237 670142491</a>
+                    <a href="tel:+237670142491" class="contact-box__info--title">+237 670142491</a>
                     <p class="contact-box__info--subtitle">Mon-Fr 8am-6pm</p>
                 </div>
             </div>
@@ -28,7 +28,9 @@
                     </svg>
                 </div>
                 <div class="contact-box__info">
-                    <a href="" class="contact-box__info--title">keenndjc@gmail.com</a>
+                    <a href="" class="contact-box__info--title" data-bs-toggle="modal" data-bs-target="#contactModal">
+                        keenndjc@gmail.com
+                    </a>
                     <p class="contact-box__info--subtitle">Online support</p>
                 </div>
             </div>
@@ -45,7 +47,7 @@
                     </svg>
                 </div>
                 <div class="contact-box__info">
-                    <a href="" class="contact-box__info--title">Douala, Cameroon</a>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#mapboxModal" class="contact-box__info--title">Douala, Cameroon</a>
                     <p class="contact-box__info--subtitle">3PHF+FM Douala</p>
                 </div>
             </div>
@@ -60,11 +62,21 @@
                     connect with us on social media
                 </div>
                 <div class="col-lg-7 col-md-6">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="social" href="https://web.facebook.com/bernardgeraud.dongmo/">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a class="social" href="https://twitter.com/DongmoGeraud">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="social" href="https://github.com/Keen1483">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a class="social" href="https://www.linkedin.com/in/bernard-geraud-dongmo-3752a01aa/">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a class="social" href="https://www.instagram.com/keenndjc/">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -74,20 +86,29 @@
     <div class="container mt-5">
         <div class="row text-white justify-content-center mt-3 pb-3">
             <div class="col-12 col-sm-6 col-lg-6 mx-auto">
-                <h5 class="text-capitalize fw-bold">Campany name</h5>
+                <h5 class="text-capitalize fw-bold">Appavenue</h5>
                 <hr style="width: 60px; height: 2px;" class="bg-white d-inline-block mb-4">
                 <p class="lh-lg">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio consequuntur sunt expedita sint iusto impedit inventore ipsum?
+                    Our services range from initial design to deployment anywhere anytime.
+                    We combine a simple user experience, an optimal user interface and fast page loading to give you mobile and web applications that adapt to your users' behaviors.
                 </p>
             </div>
             <div class="col-12 col-sm-6 col-lg-2 mb-4 mx-auto">
                 <h5 class="text-capitalize fw-bold">products</h5>
                 <hr style="width: 60px; height: 2px;" class="bg-white d-inline-block mb-4">
                 <ul class="list-inline campany-list">
-                    <li><a href="#">Lorem ipsum</a></li>
-                    <li><a href="#">Lorem ipsum</a></li>
-                    <li><a href="#">Lorem ipsum</a></li>
-                    <li><a href="#">Lorem ipsum</a></li>
+                    <li>
+                        <a routerLink="/services/{{ mobile.name }}">Mobile development</a>
+                    </li>
+                    <li>
+                        <a routerLink="/services/{{ web.name }}">Web development</a>
+                    </li>
+                    <li>
+                        <a routerLink="/services/{{ design.name }}">UX/UI Design</a>
+                    </li>
+                    <li>
+                        <a routerLink="/services/{{ hosting.name }}">Cloud hosting</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-12 col-sm-6 col-lg-2 mb-4 mx-auto">
@@ -104,10 +125,20 @@
                 <h5 class="text-capitalize fw-bold">contact</h5>
                 <hr style="width: 60px; height: 2px;" class="bg-white d-inline-block mb-4">
                 <ul class="list-inline campany-list">
-                    <li><a href="#">Lorem ipsum</a></li>
-                    <li><a href="#">Lorem ipsum</a></li>
-                    <li><a href="#">Lorem ipsum</a></li>
-                    <li><a href="#">Lorem ipsum</a></li>
+                    <li>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+                            Message
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Phone call</a>
+                    </li>
+                    <li>
+                        <a class="social" href="https://www.linkedin.com/in/bernard-geraud-dongmo-3752a01aa/">LinkedIn</a>
+                    </li>
+                    <li>
+                        <a class="social" href="https://twitter.com/DongmoGeraud">Twitter</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -119,7 +150,7 @@
             <div class="row text-center text-white">
                 <div class="col-12">
                     <div class="footer-bottom__copyright">
-                        &copy; Copyright 2021 <a href="#">Multi-purpose Campany</a> | Create by <a href="#">Bernard Geraud Dongmo</a>
+                        &copy; Copyright 2021 <a href="/home#home">Appavenue Campany</a> | Create by <a class="social" href="https://www.linkedin.com/in/bernard-geraud-dongmo-3752a01aa/">Bernard Geraud Dongmo</a>
                     </div>
                 </div>
             </div>
@@ -131,3 +162,52 @@
 <a href="home#home" class="shadow btn-primary rounded-circle back-to-top">
     <i class="fas fa-chevron-up"></i>
 </a>
+
+<!-- CONTACT US -->
+<div class="modal fade text-dark" id="contactModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalTitle">
+                    Contact Us
+                </h5>
+            </div>
+            <div class="modal-body">
+                <form id="modal">
+                    <div class="form-group">
+                        <label for="nameMessage">Name</label>
+                        <input id="nameMessage" type="text" class="form-control">
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="emailMessage">Email</label>
+                        <input id="emailMessage" type="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="messageModal" class="form-control"></textarea>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <a href="#" id="sendMessage" class="rounded-pill btn-outline btn-rounded border-primary">
+                            submit
+                            <i class="fas fa-paper-plane"></i>
+                        </a>
+                    </div>
+
+                    <span class="flash-message text-secondary fst-italic lead"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MAPBOXGL FOR LOCATION -->
+<div class="modal fade text-dark" id="mapboxModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+</div>

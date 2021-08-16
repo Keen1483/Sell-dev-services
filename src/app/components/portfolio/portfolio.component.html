@@ -3,7 +3,7 @@
         <div class="row text-center mt-5">
             <h1 class="display-3 fw-bold text-capitalize">latest work</h1>
             <div class="heading-line"></div>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore ratione nobis dicta.</p>
+            <p class="lead">Below you will see some of our work. Our services are becoming more and more important as time goes by.</p>
         </div>
         <!-- FILTER BUTTON -->
         <div class="row mt-5 mb-4 g-3 text-center">
@@ -17,9 +17,9 @@
 
         <!-- START THE PORTFOLIO ITEMS -->
         <div class="row g-4">
-            <div class="col-lg-4 col-md-6" *ngFor="let portfolio of portfolios">
+            <div class="col-lg-4 col-md-6" *ngFor="let portfolio of portfolios; let i = index">
                 <div class="portfolio-box shadow">
-                    <img src="./assets/images/portfolio/{{ portfolio.image }}" alt="{{ portfolio.project }} image" title="{{ portfolio.project }}" class="img-fluid">
+                    <img src="./assets/images/portfolio/portfolio-{{ i + 1 }}.jpg" alt="{{ portfolio.project }} image" title="{{ portfolio.project }}" class="img-fluid">
                     <div class="portfolio-info">
                         <div class="caption">
                             <h4>{{ portfolio.project }}</h4>
