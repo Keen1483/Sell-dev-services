@@ -18,18 +18,7 @@ export class AppComponent implements OnInit {
     title = 'app-avenue';
 
     constructor() {
-        var firebaseConfig = {
-            apiKey: "AIzaSyBpyMRrcYnvUd0jf37tEMgEdv41QynaQZI",
-            authDomain: "appavenue-39fa3.firebaseapp.com",
-            projectId: "appavenue-39fa3",
-            storageBucket: "appavenue-39fa3.appspot.com",
-            messagingSenderId: "1088043996965",
-            appId: "1:1088043996965:web:277b0338d999dd0c222ccc",
-            measurementId: "G-0TEL55B908"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
+        
     }
 
     ngOnInit() {
