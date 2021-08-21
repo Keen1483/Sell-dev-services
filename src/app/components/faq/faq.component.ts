@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { Question } from '../../models/Question.model';
+import { Subscription } from 'rxjs';
+import { QuestionService } from '../../services/users/question.service';
 
 declare var $: any;
 
@@ -12,7 +15,12 @@ export class FaqComponent implements OnInit {
 
     faqForm: FormGroup;
 
-    constructor(private fb: FormBuilder) { }
+    questionSubscription$: Subscription;
+
+    questions: Question[] = [];
+
+    constructor(private fb: FormBuilder,
+                private questionService: QuestionService) { }
 
     ngOnInit(): void {
         $(document).ready(() => {
@@ -29,12 +37,15 @@ export class FaqComponent implements OnInit {
             });
         });
 
+        this.questionSubscription$ = this.questionService.questionSubject$.subscribe(
+            (questions: Question[]) => this.questions = questions
+        );
+
         this.initForm();
     }
 
     initForm() {
         this.faqForm = this.fb.group({
-            email: ['', [Validators.required, Validators.email, Validators.maxLength(32)]],
             questions: this.fb.array([this.questForm()])
         });
     }
@@ -58,9 +69,10 @@ export class FaqComponent implements OnInit {
     }
 
     onSubmit() {
-        const email = this.faqForm.get('email')?.value;
         const questions = this.faqForm.get('questions')?.value;
-        console.log(email, questions);
+        console.log(questions);
+
+        // this.questionService.createQuestion();
     }
 
 }

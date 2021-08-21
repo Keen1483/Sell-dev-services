@@ -5,6 +5,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { IntroSectionDetailsComponent } from './components/intro-section/intro-section-details/intro-section-details.component';
 import { IntroSectionComponent } from './components/intro-section/intro-section.component';
 import { LearnMoreComponent } from './components/services/learn-more/learn-more.component';
+import { SignupComponent } from './components/auths/signup/signup.component';
+import { SigninComponent } from './components/auths/signin/signin.component';
+import { AuthUserGuard } from './guards/auth-user.guard';
 
 const routes: Routes = [
   {
@@ -18,6 +21,14 @@ const routes: Routes = [
   {
     path: 'services/:name',
     component: LearnMoreComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
+  },
+  {
+    path: 'signin',
+    component: SigninComponent
   },
   {
     path: '',

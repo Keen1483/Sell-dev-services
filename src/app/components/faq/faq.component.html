@@ -82,18 +82,8 @@
                     ask your questions?
                 </button>
             </div>
-            <div class="col-sm-12 question">
+            <div class="col-sm-12 mt-3 question">
                 <form [formGroup]="faqForm" (ngSubmit)="onSubmit()">
-                    <div class="form-group my-3">
-                        <input type="email"
-                                placeholder="Your email address"
-                                class="form-control shadow form-control-lg"
-                                formControlName="email"
-                                maxlength="32">
-                    </div>
-
-                    <h2>Questions</h2>
-
                     <div formArrayName="questions" *ngFor="let creds of getQuests().controls; let i = index">
                         <ng-container [formGroupName]="i">
                             <div class="input-group mb-3">

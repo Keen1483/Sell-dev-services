@@ -17,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { IntroSectionDetailsComponent } from './components/intro-section/intro-section-details/intro-section-details.component';
 import { LearnMoreComponent } from './components/services/learn-more/learn-more.component';
+import { SigninComponent } from './components/auths/signin/signin.component';
+import { SignupComponent } from './components/auths/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { LearnMoreComponent } from './components/services/learn-more/learn-more.
     HomeViewComponent,
     PageNotFoundComponent,
     IntroSectionDetailsComponent,
-    LearnMoreComponent
+    LearnMoreComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
