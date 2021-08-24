@@ -2,6 +2,10 @@
 .account {
     position: relative;
     font-family: 'Poppins', sans-serif;
+    margin-top: 60px;
+    @media (min-width: 768px) {
+        margin-top: 70px;
+    }
 
     .container {
         position: relative;

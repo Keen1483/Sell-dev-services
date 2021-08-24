@@ -37,11 +37,11 @@ const routes: Routes = [
         component: ProfileComponent
       },
       {
-        path: 'mails',
+        path: 'projects',
         component: MailsComponent
       },
       {
-        path: 'questions',
+        path: 'questions/:email_question',
         component: QuestionsComponent
       },
       {
