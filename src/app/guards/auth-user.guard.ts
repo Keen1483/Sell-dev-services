@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/auth";
@@ -11,7 +11,11 @@ import "firebase/firestore";
 })
 export class AuthUserGuard implements CanActivate {
 
-    constructor(private router: Router) {}
+    email: string | null;
+
+    constructor(private router: Router) {
+                    this.getUser();
+                }
 
     canActivate(
         route: ActivatedRouteSnapshot,
@@ -23,7 +27,6 @@ export class AuthUserGuard implements CanActivate {
                         (user) => {
                             if (user) {
                                 resolve(true);
-                                console.log(user);
                             } else {
                                 this.router.navigate(['signin']);
                                 resolve(false);
@@ -32,6 +35,24 @@ export class AuthUserGuard implements CanActivate {
                     );
                 }
             );
+    }
+
+    getUser() {
+        return new Promise(
+            (resolve, reject) => {
+                firebase.auth().onAuthStateChanged(
+                    (user) => {
+                        if (user) {
+                            resolve(true);
+                            this.email = user.email;
+                        } else {
+                            resolve(false);
+                            this.router.navigate(['signin']);
+                        }
+                    }
+                );
+            }
+        );
     }
     
 }

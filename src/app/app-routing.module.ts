@@ -8,6 +8,11 @@ import { LearnMoreComponent } from './components/services/learn-more/learn-more.
 import { SignupComponent } from './components/auths/signup/signup.component';
 import { SigninComponent } from './components/auths/signin/signin.component';
 import { AuthUserGuard } from './guards/auth-user.guard';
+import { AccountComponent } from './components/account/account.component';
+import { ProfileComponent } from './components/account/profile/profile.component';
+import { MailsComponent } from './components/account/mails/mails.component';
+import { QuestionsComponent } from './components/account/questions/questions.component';
+import { DashboardComponent } from './components/account/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -21,6 +26,29 @@ const routes: Routes = [
   {
     path: 'services/:name',
     component: LearnMoreComponent
+  },
+  {
+    path: 'account',
+    component: AccountComponent,
+    canActivate: [AuthUserGuard],
+    children: [
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'mails',
+        component: MailsComponent
+      },
+      {
+        path: 'questions',
+        component: QuestionsComponent
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      }
+    ]
   },
   {
     path: 'signup',

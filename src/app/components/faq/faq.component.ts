@@ -3,6 +3,10 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Question } from '../../models/Question.model';
 import { Subscription } from 'rxjs';
 import { QuestionService } from '../../services/users/question.service';
+import { AuthUserGuard } from '../../guards/auth-user.guard';
+import { Router } from '@angular/router';
+import { UserService } from '../../services/users/user.service';
+import { User } from '../../models/User.model';
 
 declare var $: any;
 
@@ -16,11 +20,16 @@ export class FaqComponent implements OnInit {
     faqForm: FormGroup;
 
     questionSubscription$: Subscription;
+    userSubscription$: Subscription;
 
     questions: Question[] = [];
+    users: User[];
 
     constructor(private fb: FormBuilder,
-                private questionService: QuestionService) { }
+                private questionService: QuestionService,
+                private guard: AuthUserGuard,
+                private router: Router,
+                private userService: UserService) { }
 
     ngOnInit(): void {
         $(document).ready(() => {
@@ -39,6 +48,9 @@ export class FaqComponent implements OnInit {
 
         this.questionSubscription$ = this.questionService.questionSubject$.subscribe(
             (questions: Question[]) => this.questions = questions
+        );
+        this.userSubscription$ = this.userService.userSubject$.subscribe(
+            (users: User[]) => this.users = users
         );
 
         this.initForm();
@@ -70,7 +82,30 @@ export class FaqComponent implements OnInit {
 
     onSubmit() {
         const questions = this.faqForm.get('questions')?.value;
-        console.log(questions);
+
+        const date = new Date();
+        const id = this.questions.length + 1;
+
+        const email = this.guard.email;
+
+        const user = this.users.find(data => data.email === email);
+        
+        const firstName = user?.firstName;
+        const lastName = user?.lastName
+
+        if (email) {
+            const questionsArray: Question = {
+                id: id,
+                content: questions,
+                date: date,
+                email: email,
+                firstName: firstName,
+                lastName: lastName
+            };
+            this.questionService.createQuestion(questionsArray);
+
+            this.router.navigate(['account']);
+        }
 
         // this.questionService.createQuestion();
     }

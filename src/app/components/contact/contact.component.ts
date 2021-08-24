@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Mail } from '../../models/Mail.model';
 import { MailService } from '../../services/users/mail.service';
 import { Subscription } from 'rxjs';
+import { AuthUserGuard } from '../../guards/auth-user.guard';
+import { Router } from '@angular/router';
+import { UserService } from '../../services/users/user.service';
+import { User } from '../../models/User.model';
 
 declare var $: any;
 
@@ -15,11 +19,16 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     contactForm: FormGroup;
     mailSubscription$: Subscription;
+    userSubscription$: Subscription;
 
     mails: Mail[];
+    users: User[];
 
     constructor(private formBuilder: FormBuilder,
-                private mailService: MailService) { }
+                private mailService: MailService,
+                private guard: AuthUserGuard,
+                private router: Router,
+                private userService: UserService) { }
 
     ngOnInit(): void {
         this.initForm();
@@ -27,29 +36,47 @@ export class ContactComponent implements OnInit, OnDestroy {
         this.mailSubscription$ = this.mailService.mailSubject$.subscribe(
             (mails: Mail[]) => this.mails = mails
         );
+        this.userSubscription$ = this.userService.userSubject$.subscribe(
+            (users: User[]) => this.users = users
+        );
     }
 
     initForm() {
         this.contactForm = this.formBuilder.group({
-            message: ['', Validators.required, Validators.min(10)]
+            title: ['', [Validators.required, Validators.min(5)]],
+            project: ['', [Validators.required, Validators.min(10)]]
         });
     }
 
     onSubmit() {
-        const message = this.contactForm.get('message')?.value;
+        const title = this.contactForm.get('title')?.value;
+        const project = this.contactForm.get('project')?.value;
         const date = new Date();
         const id = this.mails.length + 1;
 
-        // const mail: Mail = {
-        //     id: id,
-        //     firstName: firstName,
-        //     lastName: lastName,
-        //     email: email,
-        //     message: message,
-        //     date: date
-        // };
-        // this.mailService.createMail(mail);
-        console.log(this.contactForm.value);
+        const email = this.guard.email;
+
+        const user = this.users.find(data => data.email === email);
+        console.log(user);
+        const firstName = user?.firstName;
+        const lastName = user?.lastName
+
+        console.log(email);
+
+        if (email) {
+            const mail: Mail = {
+                id: id,
+                title: title,
+                project: project,
+                date: date,
+                email: email,
+                firstName: firstName,
+                lastName: lastName
+            };
+            this.mailService.createMail(mail);
+
+            this.router.navigate(['account']);
+        }
     }
 
     ngOnDestroy() {

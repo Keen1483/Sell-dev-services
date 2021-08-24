@@ -33,7 +33,8 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         $(document).ready(() => {
-            
+            let heightNav = $('.navbar').css('height');
+            $('.account').css('margin-top', heightNav);
         });
     }
 }

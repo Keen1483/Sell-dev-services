@@ -27,9 +27,13 @@
                 <div class="form w-100 pb-2">
                     <h4 class="display-3--title mb-5">start your project</h4>
                     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="row">
+                        <!-- TITLE -->
+                        <div class="form-group col-lg-12 mb-3">
+                            <input type="text" id="title" placeholder="Title project" class="form-control shadow form-control-lg" formControlName="title" minlength="5">
+                        </div>
                         <!-- MESSAGE -->
-                        <div class="col-lg-12 mb-3">
-                            <textarea name="message" id="message" placeholder="Project description" rows="8" class="form-control shadow form-control-lg" formControlName="message" minlength="10"></textarea>
+                        <div class="form-group col-lg-12 mb-3">
+                            <textarea name="project" id="project" placeholder="Project description" rows="8" class="form-control shadow form-control-lg" formControlName="project" minlength="10"></textarea>
                         </div>
                         <div class="text-center d-grid mt-1">
                             <button type="submit"

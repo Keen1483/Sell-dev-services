@@ -18,7 +18,6 @@ export class AuthUserService {
                     .then(
                         () => {
                             resolve();
-                            console.log('Sign up successfully!');
                         },
                         (error) => {
                             reject(error);

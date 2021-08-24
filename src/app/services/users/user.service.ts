@@ -26,6 +26,7 @@ export class UserService {
 
     saveUsers() {
         firebase.database().ref('/users').set(this.users);
+        console.log(this.users);
     }
 
     async getUsers() {
@@ -51,6 +52,27 @@ export class UserService {
             }
         );
     }
+
+    // getUserByEmail(email: string | null) {
+    //     return new Promise<User>(
+    //         (resolve, reject) => {
+    //             this.getUsers();
+    //             const index = this.users.findIndex(
+    //                 (data: User) => data.email === email
+    //             );
+    //             console.log(this.users);
+    //             firebase.database().ref('/users/' + (index - 1)).once('value')
+    //                 .then(
+    //                     (data: DataSnapshot) => {
+    //                         resolve(data.val());
+    //                     },
+    //                     (error) => {
+    //                         reject(error);
+    //                     }
+    //                 );
+    //         }
+    //     );
+    // }
 
     async createUser(user: User) {
         this.users.push(user);

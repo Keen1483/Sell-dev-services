@@ -45,7 +45,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
 
     async onSubmit() {
-        console.log(this.users);
         const email = this.userForm.get('email')?.value;
         const password = this.userForm.get('password')?.value;
         const firstName = this.userForm.get('firstName')?.value;
@@ -67,7 +66,6 @@ export class SignupComponent implements OnInit, OnDestroy {
         };
 
         await this.userService.createUser(newUser);
-        console.log(this.userForm.value);
     }
 
     onDetectImage(event: any) {

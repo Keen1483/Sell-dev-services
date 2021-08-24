@@ -1,7 +1,7 @@
 export interface Question {
     id: number;
     date: Date;
-    content: string;
+    content: string[];
     email?: string;
     firstName?: string;
     lastName?: string

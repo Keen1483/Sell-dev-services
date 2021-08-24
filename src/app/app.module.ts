@@ -19,6 +19,11 @@ import { IntroSectionDetailsComponent } from './components/intro-section/intro-s
 import { LearnMoreComponent } from './components/services/learn-more/learn-more.component';
 import { SigninComponent } from './components/auths/signin/signin.component';
 import { SignupComponent } from './components/auths/signup/signup.component';
+import { AccountComponent } from './components/account/account.component';
+import { ProfileComponent } from './components/account/profile/profile.component';
+import { MailsComponent } from './components/account/mails/mails.component';
+import { QuestionsComponent } from './components/account/questions/questions.component';
+import { DashboardComponent } from './components/account/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,12 @@ import { SignupComponent } from './components/auths/signup/signup.component';
     IntroSectionDetailsComponent,
     LearnMoreComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    AccountComponent,
+    ProfileComponent,
+    MailsComponent,
+    QuestionsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
