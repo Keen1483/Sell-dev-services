@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Question } from '../../models/Question.model';
 import { Subscription } from 'rxjs';
@@ -7,6 +7,7 @@ import { AuthUserGuard } from '../../guards/auth-user.guard';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/users/user.service';
 import { User } from '../../models/User.model';
+import { lorem, date, random } from 'faker';
 
 declare var $: any;
 
@@ -15,7 +16,7 @@ declare var $: any;
     templateUrl: './faq.component.html',
     styleUrls: ['./faq.component.scss']
 })
-export class FaqComponent implements OnInit {
+export class FaqComponent implements OnInit, OnDestroy {
 
     faqForm: FormGroup;
 
@@ -29,7 +30,7 @@ export class FaqComponent implements OnInit {
                 private questionService: QuestionService,
                 private guard: AuthUserGuard,
                 private router: Router,
-                private userService: UserService) { }
+                private userService: UserService) {}
 
     ngOnInit(): void {
         $(document).ready(() => {
@@ -106,8 +107,30 @@ export class FaqComponent implements OnInit {
 
             this.router.navigate(['account']);
         }
+    }
 
-        // this.questionService.createQuestion();
+    ngOnDestroy() {
+        this.questionSubscription$.unsubscribe();
+    }
+
+    async fakeQuestions() {
+
+        for (const _ of Array.from({ length: 100 })) {
+            const email = random.arrayElement(["karl@gmail.com", "kim@gmail.com", "keenndjc@gmail.com", "magaly@gmail.com"]);
+            const content = [lorem.sentence()];
+            const createdAt = date.future();
+            const id = this.questions.length + 1;
+
+            const questionsArray: Question = {
+                id: id,
+                content: content,
+                date: createdAt,
+                email: email
+            };
+            await this.questionService.createQuestion(questionsArray);
+        }
+
+        console.log('One hundred questions save successfully!');
     }
 
 }

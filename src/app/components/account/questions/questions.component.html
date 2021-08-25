@@ -1,1 +1,16 @@
-<p>questions works!</p>
+<div class="questions">
+    <div class="d-grid gap-3">
+        <div class="p-2 bg-light shadow-lg" *ngFor="let question of questions">
+            <div *ngFor="let quest of question.content | slice:0:1;">
+                <div>
+                    <p>
+                        {{ quest }}
+                    </p>
+                    <p class="text-end">
+                        <a class="text-decoration-none" href="{{ getUrlQuestion(quest) }}">More details</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

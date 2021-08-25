@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeViewComponent } from './components/home-view/home-view.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { IntroSectionDetailsComponent } from './components/intro-section/intro-section-details/intro-section-details.component';
-import { IntroSectionComponent } from './components/intro-section/intro-section.component';
 import { LearnMoreComponent } from './components/services/learn-more/learn-more.component';
 import { SignupComponent } from './components/auths/signup/signup.component';
 import { SigninComponent } from './components/auths/signin/signin.component';
@@ -41,7 +40,7 @@ const routes: Routes = [
         component: MailsComponent
       },
       {
-        path: 'questions/:email_question',
+        path: 'questions',
         component: QuestionsComponent
       },
       {
