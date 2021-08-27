@@ -1,5 +1,5 @@
 <div class="mails">
-    <textarea placeholder="Send a message as the bot.."></textarea>
+    <textarea (keypress)="onKeypressBot($event)" class="sender" placeholder="Send a message as the bot.."></textarea>
     <div class="chat-ui">
         <div class="chat-scrollview">
             <div class="chat-messagelist">
@@ -47,6 +47,6 @@
             </div>
         </div>
         
-        <div class="chat-authoring" contenteditable></div>
+        <div (keypress)="onKeypressAuthor($event)" class="chat-authoring" contenteditable></div>
     </div>
 </div>

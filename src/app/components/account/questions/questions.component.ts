@@ -15,27 +15,29 @@ export class QuestionsComponent implements OnInit, OnDestroy {
 
     questions: Question[] = [];
     email: string | null;
-    questionsByEmail: Question[];
 
     constructor(private guard: AuthUserGuard,
                 private questionService: QuestionService) { }
 
     ngOnInit(): void {
         this.questionSubscription$ = this.questionService.questionSubject$.subscribe(
-            (questions: Question[]) => this.questions = questions
+            (questions: Question[]) => {
+                this.questions = questions;
+            }
         );
 
         this.email = this.guard.email;
-
-        this.getQuestions(this.email);
     }
 
-    getQuestions(email: string | null) {
-        for (let question of this.questions) {
+    getQuestions(email: string | null, questions: Question[]) {
+        let questionsByEmail: Question[] = [];
+        for (let question of questions) {
             if (question.email === email) {
-                this.questionsByEmail.push(question);
+                questionsByEmail?.push(question);
             }
         }
+
+        return questionsByEmail;
     }
 
     getUrlQuestion(question: string): string {

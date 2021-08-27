@@ -60,10 +60,18 @@ export class QuestionService {
 
     async removeQuestion(question: Question) {
         const indexToRemove = this.questions.findIndex(
-            (data: Question) => data === question
+            (data: Question) => data.id === question.id
         );
         this.questions.splice(indexToRemove, 1);
         await this.saveQuestions();
+        this.emitQuestionSubject();
+    }
+
+    updateQuestion(question: Question) {
+        const index = this.questions.findIndex(
+            data => data.id === question.id
+        );
+        this.questions[index] = question;
         this.emitQuestionSubject();
     }
 }

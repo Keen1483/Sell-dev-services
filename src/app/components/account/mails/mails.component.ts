@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 declare var $: any;
 
@@ -7,99 +7,122 @@ declare var $: any;
     templateUrl: './mails.component.html',
     styleUrls: ['./mails.component.scss']
 })
-export class MailsComponent implements OnInit {
+export class MailsComponent implements OnInit, AfterViewInit {
 
-    constructor() { }
+    @ViewChild('bot') bot: ElementRef;
+    @ViewChild('author') author: ElementRef;
+    @ViewChild('chat-list') chatList: ElementRef;
+
+    constructor(private renderer: Renderer2) { }
 
     ngOnInit(): void {
-        this.initselector();
+        // this.initselector();
     }
 
-    initselector() {
-        $(document).ready(() => {
-            const bot = $('textarea')
-            const author = $('.chat-authoring')
-            const scrollview = $('.chat-scrollview')
-            const messagelist = $('.chat-messagelist')
-            const bot_template = (message: any) => `
-            <div class="chat-cluster">
-                <div class="chat-avatar">
-                    <img src="https://cdn.dribbble.com/users/37530/screenshots/2937858/drib_blink_bot.gif" alt="">
-                </div>
-                <section>
-                    <h3>Snap Bot</h3>
-                    <div class="chat-message">${message}</div>
-                </section>
-            </div>
-            `
+    ngAfterViewInit() {
+        document.querySelector('.chat-message')?.setAttribute('title', 'chat UI');
+    }
 
-            const user_template = (message: any) => `
-            <div mine class="chat-cluster">
-                <section>
-                    <div class="chat-message">${message}</div>
-                </section>
-            </div>
-            `
+    // SENDER & OWNER TEMPLATE
+    bot_template(message: string) {
+        const divMessage = this.renderer.createElement('div');
+        this.renderer.addClass(divMessage, 'chat-message');
+        const textMessage = this.renderer.createText(message);
+        this.renderer.appendChild(divMessage, textMessage);
+
+        const h3Name = this.renderer.createElement('h3');
+        const textName = this.renderer.createText('Snap Bot');
+        this.renderer.appendChild(h3Name, textName);
+
+        // SECTION MESSAGE
+        const sectionMessage = this.renderer.createElement('section');
+        this.renderer.appendChild(sectionMessage, h3Name);
+        this.renderer.appendChild(sectionMessage, divMessage);
+
+        const imgAvatar = this.renderer.createElement('img');
+        const srcAvatar = this.renderer.createText('https://cdn.dribbble.com/users/37530/screenshots/2937858/drib_blink_bot.gif')
+        this.renderer.setAttribute(imgAvatar, 'src', srcAvatar);
+
+        // AVATAR
+        const divAvatar = this.renderer.createText('div');
+        this.renderer.addClass(divAvatar, 'chat-avatar');
+        this.renderer.appendChild(divAvatar, imgAvatar);
+
+        const divWrap = this.renderer.createElement('div');
+        this.renderer.addClass(divWrap, 'chat-cluster');
+        this.renderer.appendChild(divWrap, divAvatar);
+        this.renderer.appendChild(divWrap, sectionMessage);
+    }
+
+    // AUTHOR TEMPLATE
+    user_template(message: string) {
+        const divMessage = this.renderer.createElement('div');
+        this.renderer.addClass(divMessage, 'chat-message');
+        const textMessage = this.renderer.createText(message);
+        this.renderer.appendChild(divMessage, textMessage);
+
+        // SECTION MESSAGE
+        const sectionMessage = this.renderer.createElement('section');
+        this.renderer.appendChild(sectionMessage, divMessage);
+
+        const divWrap = this.renderer.createElement('div');
+        this.renderer.addClass(divWrap, 'chat-cluster');
+        this.renderer.setAttribute(divWrap, 'mine', '');
+        this.renderer.appendChild(divWrap, sectionMessage);
+    }
+
+    chatGenerator() {
+        const bot = document.getElementsByTagName('textarea');
+        const author = document.querySelector('.chat-authoring');
+        let scrollview: any = document.querySelector('.chat-scrollview');
+        const messagelist = document.querySelector('.chat-messagelist')
+
+        scrollview = scrollview?.scrollHeight;
+    }
+
+    onKeypressBot(event: any) {
+        const bot = document.querySelector('textarea');
+        let scrollview: any = document.querySelector('.chat-scrollview');
+        const messagelist = document.querySelector('.chat-messagelist');
+
+        scrollview = scrollview?.scrollHeight;
+
+        if (event.keyCode === 13) {
+            event.preventDefault();
+
+            if (!messagelist?.querySelector('.chat-cluster:last-child')?.hasAttribute('mine')) {
+                const divMessage = this.renderer.createElement('div');
+                this.renderer.addClass(divMessage, 'chat-message');
+                const textMessage = this.renderer.createText(bot?.value || '');
+                this.renderer.appendChild(divMessage, textMessage);
+
+                this.renderer.appendChild(messagelist?.querySelector('.chat-cluster:last-child > section'), divMessage);
+            } else {
+                this.renderer.appendChild(messagelist, this.bot_template(bot?.value||''));
+            }
+        }
+    }
+
+    onKeypressAuthor(event: any) {
+        const author = document.querySelector('.chat-authoring');
+        let scrollview: any = document.querySelector('.chat-scrollview');
+        const messagelist = document.querySelector('.chat-messagelist');
+
+        scrollview = scrollview?.scrollHeight;
+
+        if (event.keyCode === 13) {
+            event.preventDefault();
             
-            scrollview.scrollTop = scrollview.scrollHeight
+            if (messagelist?.querySelector('.chat-cluster:last-child')?.hasAttribute('mine')) {
+                const divMessage = this.renderer.createElement('div');
+                this.renderer.addClass(divMessage, 'chat-message');
+                const textMessage = this.renderer.createText(author?.innerHTML || '');
+                this.renderer.appendChild(divMessage, textMessage);
 
-            bot.keypress((e: any) => {
-                const {keyCode} = e
-                
-                if (e.keyCode === 13) {
-                    e.preventDefault()
-                    
-                    if (!$('.chat-cluster:last-child[mine]')) {
-                        // $('.chat-cluster:last-child > section').innerHTML += `<div class="chat-message">${bot.value}</div>`
-
-                        // $(`<div class="chat-message">${bot.val()}</div>`).appendTo($('.chat-cluster:last-child > section'));
-                        // alert(bot.val())
-
-                        $('.chat-cluster:last-child > section').append(`<div class="chat-message">${bot.val()}</div>`);
-                    }
-                    else {
-                        // messagelist.innerHTML += bot_template(bot.value)
-
-                        // $(bot_template(bot.val())).appendTo(messagelist);
-
-                        messagelist.append(bot_template(bot.val()));
-                        alert('Goooooooooooood!!');
-                    }
-                    
-                    bot.val('') ;
-                }
-            })
-
-            author.keypress((e: any) => {
-                const {keyCode} = e
-                
-                if (e.keyCode === 13) {
-                    e.preventDefault()
-                    
-                    if ($('.chat-cluster:last-child[mine]')) {
-                        // messagelist.querySelector('.chat-cluster:last-child > section').innerHTML += `<div class="chat-message">${author.innerHTML}</div>`
-                        
-                        // $(`<div class="chat-message">${author.html()}</div>`).appendTo($('.chat-cluster:last-child > section'));
-
-                        var dataHtml = $('.chat-cluster:last-child > section').html();
-                        var addHtml = `<div class="chat-message">${author.text()}</div>`;
-                        $('.chat-cluster:last-child > section').html(dataHtml + addHtml);
-
-                        // $('.chat-cluster:last-child > section').append(`<div class="chat-message">${author.html()}</div>`);
-                    }
-                    else {
-                        // messagelist.innerHTML += user_template(author.innerHTML)
-
-                        // $(user_template(author.html())).appendTo(messagelist);
-
-                        messagelist.append(user_template(author.html()));
-                    }
-                    
-                    // author.innerHTML = ''
-
-                    author.html('');
-                }
-            })
-        });
+                this.renderer.appendChild(messagelist?.querySelector('.chat-cluster:last-child > section'), divMessage);
+            } else {
+                this.renderer.appendChild(messagelist, this.user_template(author?.innerHTML||''));
+            }
+        }
     }
 }

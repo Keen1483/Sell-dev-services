@@ -24,6 +24,8 @@ import { ProfileComponent } from './components/account/profile/profile.component
 import { MailsComponent } from './components/account/mails/mails.component';
 import { QuestionsComponent } from './components/account/questions/questions.component';
 import { DashboardComponent } from './components/account/dashboard/dashboard.component';
+import { MailDetailsComponent } from './components/account/mails/mail-details/mail-details.component';
+import { QuestionDetailsComponent } from './components/account/questions/question-details/question-details.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { DashboardComponent } from './components/account/dashboard/dashboard.com
     ProfileComponent,
     MailsComponent,
     QuestionsComponent,
-    DashboardComponent
+    DashboardComponent,
+    MailDetailsComponent,
+    QuestionDetailsComponent
   ],
   imports: [
     BrowserModule,
