@@ -14,6 +14,8 @@ import { QuestionsComponent } from './components/account/questions/questions.com
 import { DashboardComponent } from './components/account/dashboard/dashboard.component';
 import { MailDetailsComponent } from './components/account/mails/mail-details/mail-details.component';
 import { QuestionDetailsComponent } from './components/account/questions/question-details/question-details.component';
+import { BecomeAffiliateComponent } from './app-confidences/become-affiliate/become-affiliate.component';
+import { HelpComponent } from './app-confidences/help/help.component';
 
 const routes: Routes = [
   {
@@ -58,6 +60,14 @@ const routes: Routes = [
         component: QuestionDetailsComponent
       }
     ]
+  },
+  {
+    path: 'become-affiliate',
+    component: BecomeAffiliateComponent
+  },
+  {
+    path: 'help',
+    component: HelpComponent
   },
   {
     path: 'signup',

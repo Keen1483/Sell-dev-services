@@ -67,4 +67,22 @@ export class MailService {
         await this.saveMails();
         this.emitMailSubject();
     }
+
+    async removeMail(mail: Mail) {
+        const indexToRemove = this.mails.findIndex(
+            (data: Mail) => data.id === mail.id
+        );
+        this.mails.splice(indexToRemove, 1);
+        await this.saveMails();
+        this.emitMailSubject();
+    }
+
+    async updateMails(mail: Mail) {
+        const index = this.mails.findIndex(
+            data => data.id === mail.id
+        );
+        this.mails[index - 1] = mail;
+        await this.saveMails();
+        this.emitMailSubject();
+    }
 }

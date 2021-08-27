@@ -67,11 +67,12 @@ export class QuestionService {
         this.emitQuestionSubject();
     }
 
-    updateQuestion(question: Question) {
+    async updateQuestions(question: Question) {
         const index = this.questions.findIndex(
             data => data.id === question.id
         );
-        this.questions[index] = question;
+        this.questions[index - 1] = question;
+        await this.saveQuestions();
         this.emitQuestionSubject();
     }
 }

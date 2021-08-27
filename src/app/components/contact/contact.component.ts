@@ -50,7 +50,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     onSubmit() {
         const title = this.contactForm.get('title')?.value;
-        const project = this.contactForm.get('project')?.value;
+        const project: string = this.contactForm.get('project')?.value;
         const date = new Date();
         const id = this.mails.length + 1;
 
@@ -67,7 +67,7 @@ export class ContactComponent implements OnInit, OnDestroy {
             const mail: Mail = {
                 id: id,
                 title: title,
-                project: project,
+                project: [project],
                 date: date,
                 email: email,
                 firstName: firstName,
