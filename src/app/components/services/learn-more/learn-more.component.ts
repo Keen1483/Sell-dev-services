@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ServiceService } from 'src/app/services/service.service';
-import { Service } from 'src/app/models/Service.model';
+import { ServiceService } from '../../../services/service.service';
 
 @Component({
     selector: 'app-learn-more',

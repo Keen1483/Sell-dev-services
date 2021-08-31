@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     userForm: FormGroup;
     
     imageUploading = false;
-    imageUrl: any;
+    imageUrl: string;
     imageUploaded = false;
 
     users: User[] = [];
@@ -39,8 +39,7 @@ export class SignupComponent implements OnInit, OnDestroy {
             email: ['', [Validators.required, Validators.email, Validators.max(32)]],
             password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]],
             firstName: ['', [Validators.maxLength(20), Validators.min(2)]],
-            lastName: ['', [Validators.maxLength(20), Validators.min(2)]],
-            photo: [null]
+            lastName: ['', [Validators.maxLength(20), Validators.min(2)]]
         });
     }
 
@@ -49,7 +48,10 @@ export class SignupComponent implements OnInit, OnDestroy {
         const password = this.userForm.get('password')?.value;
         const firstName = this.userForm.get('firstName')?.value;
         const lastName = this.userForm.get('lastName')?.value;
-        const photo = this.userForm.get('photo')?.value;
+        let photo: string = '';
+        if (this.imageUrl && this.imageUrl !== '') {
+            photo = this.imageUrl;
+        }
         const date = new Date();
         const id = this.users.length + 1;
 
@@ -70,7 +72,6 @@ export class SignupComponent implements OnInit, OnDestroy {
 
     onDetectImage(event: any) {
         this.imageUrl = event.target.files[0];
-        console.log(this.imageUrl);
     }
     
     onUploadImage(image: File) {

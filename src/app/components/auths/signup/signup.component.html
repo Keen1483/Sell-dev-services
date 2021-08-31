@@ -56,14 +56,15 @@
                         <!-- PHOTO -->
                         <div class="form-group mb-3">
                             <label for="photo">Photo</label>
-                            <input type="file" (change)="onDetectImage($event)" placeholder="Photo" id="photo" accept="image/png, image/jpg" class="form-control shadow form-control-lg" formControlName="photo">
+                            <input type="file" (change)="onDetectImage($event)" placeholder="Photo" id="photo" accept="image/png, image/jpg" class="form-control shadow form-control-lg">
+                            <p *ngIf="imageUploaded">Photo uploaded</p>
                         </div>
                     </div>
                 </div>
                 <div class="text-center d-grid mt-1">
                     <button type="submit"
                             class="btn btn-primary rounded-pill py-3"
-                            [disabled]="userForm.invalid">
+                            [disabled]="userForm.invalid || imageUploading">
                         submit
                         <i class="fas fa-paper-plane"></i>
                     </button>

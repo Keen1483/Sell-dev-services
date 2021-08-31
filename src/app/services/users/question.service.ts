@@ -71,7 +71,7 @@ export class QuestionService {
         const index = this.questions.findIndex(
             data => data.id === question.id
         );
-        this.questions[index - 1] = question;
+        this.questions[index] = question;
         await this.saveQuestions();
         this.emitQuestionSubject();
     }

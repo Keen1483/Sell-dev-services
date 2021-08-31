@@ -1,6 +1,4 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-
-declare var $: any;
+import { Component, OnInit, Renderer2, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
     selector: 'app-mails',
@@ -9,42 +7,34 @@ declare var $: any;
 })
 export class MailsComponent implements OnInit, AfterViewInit {
 
-    @ViewChild('bot') bot: ElementRef;
-    @ViewChild('author') author: ElementRef;
-    @ViewChild('chat-list') chatList: ElementRef;
+    // @ViewChild("messagelist") messagelist: ElementRef;
 
-    constructor(private renderer: Renderer2) { }
+    constructor(private renderer: Renderer2) {}
 
     ngOnInit(): void {
-        // this.initselector();
     }
 
     ngAfterViewInit() {
-        document.querySelector('.chat-message')?.setAttribute('title', 'chat UI');
+        let scrollview: any = document.querySelector('.chat-scrollview');
+        scrollview = scrollview?.scrollHeight;
     }
 
     // SENDER & OWNER TEMPLATE
-    bot_template(message: string) {
+    bot_template(message: string): Node {
         const divMessage = this.renderer.createElement('div');
         this.renderer.addClass(divMessage, 'chat-message');
         const textMessage = this.renderer.createText(message);
         this.renderer.appendChild(divMessage, textMessage);
 
-        const h3Name = this.renderer.createElement('h3');
-        const textName = this.renderer.createText('Snap Bot');
-        this.renderer.appendChild(h3Name, textName);
-
         // SECTION MESSAGE
         const sectionMessage = this.renderer.createElement('section');
-        this.renderer.appendChild(sectionMessage, h3Name);
         this.renderer.appendChild(sectionMessage, divMessage);
 
         const imgAvatar = this.renderer.createElement('img');
-        const srcAvatar = this.renderer.createText('https://cdn.dribbble.com/users/37530/screenshots/2937858/drib_blink_bot.gif')
-        this.renderer.setAttribute(imgAvatar, 'src', srcAvatar);
+        this.renderer.setAttribute(imgAvatar, 'src', 'https://cdn.dribbble.com/users/37530/screenshots/2937858/drib_blink_bot.gif');
 
         // AVATAR
-        const divAvatar = this.renderer.createText('div');
+        const divAvatar = this.renderer.createElement('div');
         this.renderer.addClass(divAvatar, 'chat-avatar');
         this.renderer.appendChild(divAvatar, imgAvatar);
 
@@ -52,10 +42,12 @@ export class MailsComponent implements OnInit, AfterViewInit {
         this.renderer.addClass(divWrap, 'chat-cluster');
         this.renderer.appendChild(divWrap, divAvatar);
         this.renderer.appendChild(divWrap, sectionMessage);
+
+        return divWrap;
     }
 
     // AUTHOR TEMPLATE
-    user_template(message: string) {
+    user_template(message: string): Node {
         const divMessage = this.renderer.createElement('div');
         this.renderer.addClass(divMessage, 'chat-message');
         const textMessage = this.renderer.createText(message);
@@ -69,23 +61,14 @@ export class MailsComponent implements OnInit, AfterViewInit {
         this.renderer.addClass(divWrap, 'chat-cluster');
         this.renderer.setAttribute(divWrap, 'mine', '');
         this.renderer.appendChild(divWrap, sectionMessage);
+
+        return divWrap;
     }
 
-    chatGenerator() {
-        const bot = document.getElementsByTagName('textarea');
-        const author = document.querySelector('.chat-authoring');
-        let scrollview: any = document.querySelector('.chat-scrollview');
-        const messagelist = document.querySelector('.chat-messagelist')
-
-        scrollview = scrollview?.scrollHeight;
-    }
-
+    // DISPLAY Mail USER FROM SCREEN
     onKeypressBot(event: any) {
         const bot = document.querySelector('textarea');
-        let scrollview: any = document.querySelector('.chat-scrollview');
         const messagelist = document.querySelector('.chat-messagelist');
-
-        scrollview = scrollview?.scrollHeight;
 
         if (event.keyCode === 13) {
             event.preventDefault();
@@ -98,17 +81,19 @@ export class MailsComponent implements OnInit, AfterViewInit {
 
                 this.renderer.appendChild(messagelist?.querySelector('.chat-cluster:last-child > section'), divMessage);
             } else {
-                this.renderer.appendChild(messagelist, this.bot_template(bot?.value||''));
+                if (bot?.value) {
+                    this.renderer.appendChild(messagelist, this.bot_template(bot.value));
+                }
             }
+
+            if (bot?.value) bot.value = '';
         }
     }
 
+    // DISPLAY Mail USER FROM SCREEN
     onKeypressAuthor(event: any) {
         const author = document.querySelector('.chat-authoring');
-        let scrollview: any = document.querySelector('.chat-scrollview');
         const messagelist = document.querySelector('.chat-messagelist');
-
-        scrollview = scrollview?.scrollHeight;
 
         if (event.keyCode === 13) {
             event.preventDefault();
@@ -121,8 +106,50 @@ export class MailsComponent implements OnInit, AfterViewInit {
 
                 this.renderer.appendChild(messagelist?.querySelector('.chat-cluster:last-child > section'), divMessage);
             } else {
-                this.renderer.appendChild(messagelist, this.user_template(author?.innerHTML||''));
+                if (author?.innerHTML) {
+                    this.renderer.appendChild(messagelist, this.user_template(author.innerHTML));
+                }
+                
             }
+
+            if (author?.innerHTML) author.innerHTML = '';
+        }
+    }
+
+    // DISPLAY Mail USER FROM SERVER
+    userDisplayMail(message: string) {
+        const messagelist = document.querySelector('.chat-messagelist');
+
+        if (!messagelist?.querySelector('.chat-cluster:last-child')?.hasAttribute('mine')) {
+            const divMessage = this.renderer.createElement('div');
+            this.renderer.addClass(divMessage, 'chat-message');
+            const textMessage = this.renderer.createText(message);
+            this.renderer.appendChild(divMessage, textMessage);
+
+            this.renderer.appendChild(messagelist?.querySelector('.chat-cluster:last-child > section'), divMessage);
+        } else {
+            if (message) {
+                this.renderer.appendChild(messagelist, this.bot_template(message));
+            }
+        }
+    }
+
+    // DISPLAY Mail appavenue FROM SERVER
+    appavenueDisplayMail(message: string) {
+        const messagelist = document.querySelector('.chat-messagelist');
+
+        if (messagelist?.querySelector('.chat-cluster:last-child')?.hasAttribute('mine')) {
+            const divMessage = this.renderer.createElement('div');
+            this.renderer.addClass(divMessage, 'chat-message');
+            const textMessage = this.renderer.createText(message);
+            this.renderer.appendChild(divMessage, textMessage);
+
+            this.renderer.appendChild(messagelist?.querySelector('.chat-cluster:last-child > section'), divMessage);
+        } else {
+            if (message) {
+                this.renderer.appendChild(messagelist, this.user_template(message));
+            }
+            
         }
     }
 }

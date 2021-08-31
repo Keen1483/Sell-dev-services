@@ -41,7 +41,13 @@ const routes: Routes = [
       },
       {
         path: 'projects',
-        component: MailsComponent
+        component: MailsComponent,
+        children: [
+          {
+            path: 'projects/:email_project',
+            component: MailDetailsComponent
+          }
+        ]
       },
       {
         path: 'questions',
@@ -50,10 +56,6 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent
-      },
-      {
-        path: 'projects/:email_project',
-        component: MailDetailsComponent
       },
       {
         path: 'questions/:email_question',

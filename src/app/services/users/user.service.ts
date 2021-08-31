@@ -122,6 +122,9 @@ export class UserService {
                     (error) => {
                         console.log('Loading error! : ' + error);
                         reject(error);
+                    },
+                    () => {
+                        resolve(upload.snapshot.ref.getDownloadURL());
                     }
                 );
             }
