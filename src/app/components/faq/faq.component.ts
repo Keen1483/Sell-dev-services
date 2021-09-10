@@ -7,7 +7,6 @@ import { AuthUserGuard } from '../../guards/auth-user.guard';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/users/user.service';
 import { User } from '../../models/User.model';
-import { lorem, date, random } from 'faker';
 
 declare var $: any;
 
@@ -112,26 +111,5 @@ export class FaqComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.questionSubscription$.unsubscribe();
         this.userSubscription$.unsubscribe();
-    }
-
-    async fakeQuestions() {
-
-        for (const _ of Array.from({ length: 6 })) {
-            const email = random.arrayElement(["karl@gmail.com", "kim@gmail.com", "magaly@gmail.com"]);
-            const content = [];
-            content.push(lorem.sentence());
-            const createdAt = date.future();
-            const id = this.questions.length + 1;
-
-            const questionsArray: Question = {
-                id: id,
-                content: content,
-                date: createdAt,
-                email: email
-            };
-            await this.questionService.createQuestion(questionsArray);
-        }
-
-        console.log(6 + ' questions save successfully!');
     }
 }
