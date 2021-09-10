@@ -24,7 +24,7 @@ export class FaqComponent implements OnInit, OnDestroy {
     userSubscription$: Subscription;
 
     questions: Question[] = [];
-    users: User[];
+    users: User[] = [];
 
     constructor(private fb: FormBuilder,
                 private questionService: QuestionService,
@@ -89,13 +89,13 @@ export class FaqComponent implements OnInit, OnDestroy {
 
         const email = this.guard.email;
 
-        const user = this.users.find(data => data.email === email);
-        
-        const firstName = user?.firstName;
-        const lastName = user?.lastName
-
         if (email) {
-            const questionsArray: Question = {
+            const user = this.users.find(data => data.email === email);
+        
+            const firstName = user?.firstName;
+            const lastName = user?.lastName
+
+            const quest: Question = {
                 id: id,
                 content: questions,
                 date: date,
@@ -103,7 +103,7 @@ export class FaqComponent implements OnInit, OnDestroy {
                 firstName: firstName,
                 lastName: lastName
             };
-            this.questionService.createQuestion(questionsArray);
+            this.questionService.createQuestion(quest);
 
             this.router.navigate(['account']);
         }
@@ -111,13 +111,15 @@ export class FaqComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.questionSubscription$.unsubscribe();
+        this.userSubscription$.unsubscribe();
     }
 
     async fakeQuestions() {
 
-        for (const _ of Array.from({ length: 100 })) {
-            const email = random.arrayElement(["karl@gmail.com", "kim@gmail.com", "keenndjc@gmail.com", "magaly@gmail.com"]);
-            const content = [lorem.sentence()];
+        for (const _ of Array.from({ length: 6 })) {
+            const email = random.arrayElement(["karl@gmail.com", "kim@gmail.com", "magaly@gmail.com"]);
+            const content = [];
+            content.push(lorem.sentence());
             const createdAt = date.future();
             const id = this.questions.length + 1;
 
@@ -130,7 +132,6 @@ export class FaqComponent implements OnInit, OnDestroy {
             await this.questionService.createQuestion(questionsArray);
         }
 
-        console.log('One hundred questions save successfully!');
+        console.log(6 + ' questions save successfully!');
     }
-
 }

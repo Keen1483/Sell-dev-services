@@ -26,7 +26,6 @@ export class UserService {
 
     saveUsers() {
         firebase.database().ref('/users').set(this.users);
-        console.log(this.users);
     }
 
     async getUsers() {

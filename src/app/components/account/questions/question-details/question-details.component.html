@@ -12,6 +12,9 @@
             </div>
         </div>
         
-        <div (keypress)="onKeypressUser($event)" class="chat-authoring" contenteditable></div>
+        <div class="chat-authoring" contenteditable></div>
+        <div class="sender" (click)="onSendMessage()">
+            <i class="fas fa-paper-plane"></i>
+        </div>
     </div>
 </div>

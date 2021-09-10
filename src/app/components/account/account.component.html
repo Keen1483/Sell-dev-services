@@ -15,12 +15,9 @@
                         <li>
                             <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Projects</span> </a>
-                            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Project</span> 1 </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Project</span> 2 </a>
+                            <ul *ngIf="mails.length > 0" class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                <li *ngFor="let mail of mails" class="w-100">
+                                    <a routerLink="/account/projects/{{ getUrl(mail.title) }}" routerLinkActive='active' class="nav-link px-0"> <span class="d-none d-sm-inline">{{ mail.title | slice:0:15 }} </span> <span class="d-md-none d-sm-inline">{{ mail.title | slice:0:5 }}</span></a>
                                 </li>
                             </ul>
                         </li>
@@ -28,8 +25,8 @@
                             <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-question-square"></i> <span class="ms-1 d-none d-sm-inline">Questions</span> </a>
                             <ul *ngIf="questions.length > 0" class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                                <li *ngFor="let question of getQuestions(email, questions)" class="w-100">
-                                    <a *ngFor="let quest of question.content | slice:0:1;" routerLink="/account/questions/{{ getUrlQuestion(quest) }}" routerLinkActive='active' class="nav-link px-0"> <span class="d-none d-sm-inline">{{ quest | slice:0:15 }} </span> <span class="d-md-none d-sm-inline">{{ quest | slice:0:5 }}</span></a>
+                                <li *ngFor="let question of questions" class="w-100">
+                                    <a *ngFor="let quest of question.content | slice:0:1;" routerLink="/account/questions/{{ getUrl(quest.question) }}" routerLinkActive='active' class="nav-link px-0"> <span class="d-none d-sm-inline">{{ quest.question | slice:0:15 }} </span> <span class="d-md-none d-sm-inline">{{ quest.question | slice:0:5 }}</span></a>
                                 </li>
                             </ul>
                         </li>
@@ -42,17 +39,18 @@
                     <hr>
                     <div class="dropdown pb-4">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                            <img *ngIf="!photoUser" src="./assets/images/default-profile.png" alt="photo profile" width="30" height="30" class="rounded-circle">
+                            <img *ngIf="photoUser" src="{{ photoUser }}" alt="photo profile" width="30" height="30" class="rounded-circle">
                             <span class="d-none d-sm-inline mx-1">loser</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                            <li><a class="dropdown-item" href="#">New project</a></li>
-                            <li><a class="dropdown-item" href="#">New question</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="/home#contact">New project</a></li>
+                            <li><a class="dropdown-item" href="/home#faq">New question</a></li>
+                            <li><a class="dropdown-item" routerLink="profile">Profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            <li><a class="dropdown-item" (click)="signOut()">Sign out</a></li>
                         </ul>
                     </div>
                 </div>

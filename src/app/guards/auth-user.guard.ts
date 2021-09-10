@@ -45,9 +45,6 @@ export class AuthUserGuard implements CanActivate {
                         if (user) {
                             resolve(true);
                             this.email = user.email;
-                        } else {
-                            resolve(false);
-                            this.router.navigate(['signin']);
                         }
                     }
                 );

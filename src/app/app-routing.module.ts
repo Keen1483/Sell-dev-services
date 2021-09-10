@@ -41,13 +41,7 @@ const routes: Routes = [
       },
       {
         path: 'projects',
-        component: MailsComponent,
-        children: [
-          {
-            path: 'projects/:email_project',
-            component: MailDetailsComponent
-          }
-        ]
+        component: MailsComponent
       },
       {
         path: 'questions',
@@ -60,12 +54,17 @@ const routes: Routes = [
       {
         path: 'questions/:email_question',
         component: QuestionDetailsComponent
+      },
+      {
+        path: 'projects/:email_project',
+        component: MailDetailsComponent
       }
     ]
   },
   {
     path: 'become-affiliate',
-    component: BecomeAffiliateComponent
+    component: BecomeAffiliateComponent,
+    canActivate: [AuthUserGuard]
   },
   {
     path: 'help',

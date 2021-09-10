@@ -7,6 +7,7 @@ import { AuthUserGuard } from '../../guards/auth-user.guard';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/users/user.service';
 import { User } from '../../models/User.model';
+import { lorem, date, random } from 'faker';
 
 declare var $: any;
 
@@ -21,14 +22,14 @@ export class ContactComponent implements OnInit, OnDestroy {
     mailSubscription$: Subscription;
     userSubscription$: Subscription;
 
-    mails: Mail[];
-    users: User[];
+    mails: Mail[] = [];
+    users: User[] = [];
 
     constructor(private formBuilder: FormBuilder,
                 private mailService: MailService,
                 private guard: AuthUserGuard,
                 private router: Router,
-                private userService: UserService) { }
+                private userService: UserService) {}
 
     ngOnInit(): void {
         this.initForm();
@@ -56,14 +57,11 @@ export class ContactComponent implements OnInit, OnDestroy {
 
         const email = this.guard.email;
 
-        const user = this.users.find(data => data.email === email);
-        console.log(user);
-        const firstName = user?.firstName;
-        const lastName = user?.lastName
-
-        console.log(email);
-
         if (email) {
+            const user = this.users.find(data => data.email === email);
+            const firstName = user?.firstName;
+            const lastName = user?.lastName;
+            
             const mail: Mail = {
                 id: id,
                 title: title,
@@ -81,5 +79,29 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.mailSubscription$.unsubscribe();
+        this.userSubscription$.unsubscribe();
+    }
+
+    async fakeMails() {
+
+        for (const _ of Array.from({ length: 6 })) {
+            const email = random.arrayElement(["karl@gmail.com", "kim@gmail.com", "magaly@gmail.com"]);
+            const title = lorem.sentence();
+            const project = [];
+            project.push(lorem.paragraph());
+            const createdAt = date.future();
+            const id = this.mails.length + 1;
+
+            const mail: Mail = {
+                id: id,
+                date: createdAt,
+                title: title,
+                project: project,
+                email: email
+            };
+            await this.mailService.createMail(mail);
+        }
+
+        console.log(6 + ' projects save successfully!');
     }
 }
