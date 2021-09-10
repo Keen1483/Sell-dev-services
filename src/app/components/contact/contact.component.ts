@@ -7,7 +7,6 @@ import { AuthUserGuard } from '../../guards/auth-user.guard';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/users/user.service';
 import { User } from '../../models/User.model';
-import { lorem, date, random } from 'faker';
 
 declare var $: any;
 
@@ -80,28 +79,5 @@ export class ContactComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.mailSubscription$.unsubscribe();
         this.userSubscription$.unsubscribe();
-    }
-
-    async fakeMails() {
-
-        for (const _ of Array.from({ length: 6 })) {
-            const email = random.arrayElement(["karl@gmail.com", "kim@gmail.com", "magaly@gmail.com"]);
-            const title = lorem.sentence();
-            const project = [];
-            project.push(lorem.paragraph());
-            const createdAt = date.future();
-            const id = this.mails.length + 1;
-
-            const mail: Mail = {
-                id: id,
-                date: createdAt,
-                title: title,
-                project: project,
-                email: email
-            };
-            await this.mailService.createMail(mail);
-        }
-
-        console.log(6 + ' projects save successfully!');
     }
 }
