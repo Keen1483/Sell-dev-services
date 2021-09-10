@@ -16,7 +16,8 @@ export class IntroSectionComponent implements OnInit {
 
     ngOnInit(): void {
         this.lightbox = GLightbox({
-            'href': 'https://youtu.be/UzKX75aiBjM',
+            // 'href': 'https://youtu.be/UzKX75aiBjM',
+            'href': '',
             'type': 'video',
             'source': 'youtube', //vimeo, youtube or local
             'width': 900,
